@@ -1,15 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define T 10
-
-    void quicksort(int *v, int inicio, int fim){
-        int pivo;
-        if(fim>inicio){
-            pivo=particiona(v,inicio,fim);
-            quicksort(v,inicio,pivo-1);
-            quicksort(v,pivo+1,fim);
-        }
-    }
 
     int particiona(int *v,int inicio,int fim){
         int esq,dir,pivo,aux;
@@ -37,16 +27,34 @@
         return dir;
     }
 
-    int main(){
-        int v[T]={15,7,1,2,1,6,7,8,9,5},i;
-
-        quicksort(v,0,T-1);
-
-        while(i<=T-1){
-        printf("%d ",v[i]);
-        i++;
+    void quicksort(int *v, int inicio, int fim){
+        int pivo;
+        if(fim>inicio){
+            pivo=particiona(v,inicio,fim);
+            quicksort(v,inicio,pivo-1);
+            quicksort(v,pivo+1,fim);
         }
+    }
+
+    int main(){
+        int i, tam;
+        
+        printf("Digite o tamanho do vetor: ");
+            scanf("%d", &tam);
+        
+        int v[tam];
+            for(i=0;i<tam;i++){
+                printf("Digite um valor: ");
+                    scanf("%d", &v[i]);
+            }
+
+        quicksort(v,0,tam-1);
+        
+        for(i=0;i<tam;i++){
+            printf("%d ", v[i]);
+        }
+
+       
 
         return 0;
     }
-
